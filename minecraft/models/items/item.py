@@ -10,7 +10,13 @@ class Item:
         self._is_craftable = is_craftable
         self._stack_type = stack_type
         self._item_signature = item_signature
-        self._recipe = Recipe(grid=recipe, n_output=n_output)
+        self._raw = recipe
+        self._n_output = n_output
+
+    @property
+    def n_output(self) -> int:
+        """ number of item output when crafting """
+        return self._n_output
 
     @property
     def recipe(self) -> Recipe:
