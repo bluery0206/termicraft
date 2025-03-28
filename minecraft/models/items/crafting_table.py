@@ -14,5 +14,7 @@ class CraftingTable(Item):
             recipe = [
                 [plank.item_signature, plank.item_signature],
                 [plank.item_signature, plank.item_signature]
+                # [0, 2],
+                # [0, 0],
             ]
         )
