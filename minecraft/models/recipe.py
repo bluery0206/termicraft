@@ -38,8 +38,33 @@ class Recipe:
 
     @property
     def width(self) -> int:
-        """ dsadsa """
-        return len(self._grid[0])
+        """ 
+        The number of slots items horizontally
+
+        Example: Let's say Crafting Table is 5x3: 
+        ```
+            0, 0, 0, 0, i
+            i, i, i, i, i
+            0, 0, i, i, 0
+
+            where:
+                0 - has no item
+                1 - has item
+
+            then width = 5
+        ```
+        """
+
+        # The code in its long form:
+        #     longest_col = 0
+        #     for row in self._grid:
+        #         row_len = len(row)
+        #         if row_len > longest_col:
+        #             longest_col = row_len
+        #     print(F"{max(self._grid, key=len)}")
+        #     return longest_col
+
+        return len(max(self._grid, key=len))
 
     @property
     def shape(self) -> tuple:
