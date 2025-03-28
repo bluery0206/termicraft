@@ -1,5 +1,7 @@
 """ dsad """
 
+from .crafting import Crafting
+
 MAX_N_OUTPUT = 16
 
 class Recipe:
@@ -7,6 +9,11 @@ class Recipe:
     def __init__(self, grid:list, n_output:int=1) -> None:
         self._grid = grid
         self.n_output = n_output
+
+    @property
+    def crafting(self) -> Crafting:
+        """ Minecraft """
+        return Crafting(self._grid)
 
     @property
     def n_output(self) -> int:
