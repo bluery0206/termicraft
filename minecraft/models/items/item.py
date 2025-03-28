@@ -2,6 +2,7 @@
 
 from ..recipe import Recipe
 from ..stack_type import StackType
+from ..excepts import EmptyCraftingGrid
 
 class Item:
     """ Base Class for every item """
@@ -20,23 +21,21 @@ class Item:
 
     @property
     def recipe(self) -> Recipe:
-        """ recipe """
-        return self._recipe
+        """ dsad """
+        if not self._is_craftable:
+            raise AttributeError(f"{self.name} cannot be used for crafting.")
 
+        recipe = Recipe(self._raw, self._n_output)
+
+        if not recipe.crafting.has_items():
+            raise EmptyCraftingGrid
+
+        return recipe
+    
     @property
     def is_craftable(self) -> bool:
         """ recipe """
         return self._is_craftable
-
-    @property
-    def stack_type(self) -> StackType:
-        """ recipe """
-        return self._stack_type
-
-    @property
-    def n_output(self) -> int:
-        """ n_output when crafting """
-        return self._recipe.n_output
 
     @property
     def name(self) -> str:
