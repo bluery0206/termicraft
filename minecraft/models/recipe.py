@@ -138,5 +138,11 @@ class Recipe:
         # Sums per row and store in a list
         return [sum(row) for row in self._grid]
 
-        # return cols
-        return 
+    @property
+    def vector(self) -> list:
+        """ The comparable form of the recipe """
+
+        column_vector = self.column_vector
+        row_vector = self.row_vector
+
+        return (row_vector, column_vector)
