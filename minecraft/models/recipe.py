@@ -1,7 +1,5 @@
 """ dsad """
 
-import numpy as np
-
 MAX_N_OUTPUT = 16
 
 class Recipe:
@@ -72,34 +70,42 @@ class Recipe:
         return (self.height, self.grid)
 
     @property
-    def vector(self) -> list:
+    def column_vector(self) -> list:
+        """
+        A list of sum of `item_signature` values
+        within the crafting grid column.
 
-        """ The comparable form of the recipe """
+        Example: Crafting Table (3x3)
+            0, 1, 0
+            0, 1, 0
+            0, 2, 0
+        
+            Where:
+                0 - no item
+                1 - `Stone` `item_signature`
+                2 - `Stick` `item_signature`
 
-        # Initialize the vector by assigning zeroes
+            Result(s):
+                [4]
 
-        # Intializing placeholder values table so that we will just replace
-        # them values instead of doing a probably more complicated maths
-        column_vector = np.zeros((self.width, self.height), dtype=np.int32)
+                We omit the zeros to allow crafting in different columns and rows
+                as long as it can fit
 
-        print(f"{column_vector = }")
-        print(f"{self._grid = }")
+        Paired with row_vector, we can know what the items are,
+        where the items are placed, and its order.
+        """
 
-        # Rearrange the table so that the columns are now in row form, and row are now in col form
-        # prev:
-        #   x = [[1, 2],
-        #       [3, 4]]
-        # after:
-        #   x = [[1, 3],
-        #       [2, 4]]
-        # For easy addition of the vector na.
-        # Maybe I could make this on the fly calcu but this already took me a lot of time
-        #   so thats for the future
-        for row_idx, row in enumerate(self._grid):
+        # Initialize the vector by creating a list with the length
+        # of total number of columns and assign it with zero as a
+        # placeholder so that we can add
+        column_vector = [0 for _ in range(self.width)]
+
+        # Getting the sum of each column
+        for row in self._grid:
             for col_idx, col in enumerate(row):
-                column_vector[col_idx][row_idx] = col
+                column_vector[col_idx] += col
 
-        print(f"{column_vector = }")
+        return column_vector
 
         column_vector = [sum(row) for row in column_vector]
 
