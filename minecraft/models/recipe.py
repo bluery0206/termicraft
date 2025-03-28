@@ -107,12 +107,36 @@ class Recipe:
 
         return column_vector
 
-        column_vector = [sum(row) for row in column_vector]
+    @property
+    def row_vector(self) -> list:
+        """
+        A list of sum of `item_signature` values
+        within the crafting grid row.
 
-        print(f"{column_vector = }")
+        Example: Crafting Table (3x3)
+            0, 1, 0
+            0, 1, 0
+            0, 2, 0
         
-        row_vector = np.zeros((self.height, self.width), dtype=np.int32)
-        print(f"{row_vector = }")
+            Where:
+                0 - no item
+                1 - `Stone` `item_signature`
+                2 - `Stick` `item_signature`
+
+            Result(s):
+                [1, 1, 2]
+
+                We omit the zeros to allow crafting in different columns and rows
+                as long as it can fit
+
+        Together with column_vector, we can know what the items are,
+        where the items are placed, and its order.
+
+        I just realized how this is like a feature extraction layer of a CNN. We literally
+        getting the important parts
+        """
+        # Sums per row and store in a list
+        return [sum(row) for row in self._grid]
 
         # return cols
         return 
