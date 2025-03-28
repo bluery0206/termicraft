@@ -5,21 +5,27 @@ from ..stack_type import StackType
 
 class Item:
     """ Base Class for every item """
-    def __init__(self, item_signature:int, recipe:list,
+    def __init__(self, item_signature:int, recipe:list|None=None, is_craftable:bool=True,
                  stack_type:StackType=StackType.NORMAL_STACK, n_output:int=1) -> None:
+        self._is_craftable = is_craftable
         self._stack_type = stack_type
         self._item_signature = item_signature
         self._recipe = Recipe(grid=recipe, n_output=n_output)
 
     @property
-    def stack_type(self) -> StackType:
-        """ recipe """
-        return self._stack_type
-
-    @property
     def recipe(self) -> Recipe:
         """ recipe """
         return self._recipe
+
+    @property
+    def is_craftable(self) -> bool:
+        """ recipe """
+        return self._is_craftable
+
+    @property
+    def stack_type(self) -> StackType:
+        """ recipe """
+        return self._stack_type
 
     @property
     def n_output(self) -> int:
