@@ -1,0 +1,9 @@
+{
+    "name": "Crafting Table",
+    "identifier": "crafting_table`",
+    "item_signature": 3,
+    "recipe":[
+        ["plank", "plank"],
+        ["plank", "plank"]
+    ]
+}
