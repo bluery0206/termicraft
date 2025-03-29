@@ -25,10 +25,10 @@ Date: XXXX-XX-XX
 Version: X.X.X
 """
 
-from models.crafting import Crafting
+from src.crafting import Crafting
 
-from models.items.crafting_table import CraftingTable
-from models.items.plank import Plank 
+from src.items.crafting_table import CraftingTable
+from src.items.plank import Plank 
 ct = CraftingTable()
 p = Plank()
 print(f"{ct.recipe.crafting.vector = }")
