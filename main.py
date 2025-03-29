@@ -16,8 +16,7 @@ minecraft/
         stack_type.py
     main.py
 venv/
-    
-    
+
 ...
 
 Author: ...
